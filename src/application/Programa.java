@@ -35,17 +35,10 @@ public class Programa {
 			System.out.print("Data de saida: ");
 			saida = sdf.parse(input.next());
 
-			Date nova = new Date();
-			if (entrada.before(nova) && saida.before(nova)) {
-
-				System.out.println("Erro na reserva: Data de renovação estão incorretas");
-
-			} else if (!saida.after(entrada)) {
-				System.out.println("Erro na reserva: Data de saida posterior a data de entrada");
-
-			} else {
-
-				reserva.atualizandoDatas(entrada, saida);
+			String error = reserva.atualizandoDatas(entrada, saida);
+			if (error != null) {
+				System.out.println(error);
+			}else {
 				System.out.println("");
 				System.out.println("Reserva: " + reserva);
 			}

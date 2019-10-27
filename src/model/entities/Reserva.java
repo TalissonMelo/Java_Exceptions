@@ -44,9 +44,21 @@ public class Reserva {
 		return TimeUnit .DAYS.convert(dur, TimeUnit.MILLISECONDS);
 	}
 	
-	public void atualizandoDatas(Date entrada, Date saida) {
+	public String atualizandoDatas(Date entrada, Date saida) {
+		Date nova = new Date();
+		if (entrada.before(nova) && saida.before(nova)) {
+
+			return "Erro na reserva: Data de renovação estão incorretas";
+
+		}
+		if (!saida.after(entrada)) {
+			return "Erro na reserva: Data de saida posterior a data de entrada";
+
+		}
 		this.entrada = entrada;
 		this.saida = saida;
+		
+		return null;
 	}
 	
 	@Override
